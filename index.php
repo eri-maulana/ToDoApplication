@@ -1,3 +1,20 @@
+<?php
+$todos = [];
+$file = file_get_contents('todo.txt');
+$todos = unserialize($file);
+
+if (isset($_POST['todo'])) {
+   $data = $_POST['todo'];
+
+   $todos[] = [
+      'todo' => $data,
+      'status' => 0.
+   ];
+   file_put_contents('todo.txt', serialize($todos));
+}
+var_dump($todos);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
