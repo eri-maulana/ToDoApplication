@@ -12,12 +12,21 @@ if (isset($_POST['todo'])) {
       'todo' => $data,
       'status' => 0.
    ];
-   file_put_contents('todo.txt', serialize($todos));
-   header('Location: index.php');
+   saveData($todos);
 }
 
 if (isset($_GET['status'])) {
    $todos[$_GET['todo']]['status'] = $_GET['status'];
+   saveData($todos);
+}
+
+if (isset($_GET['hapus'])) {
+   unset($todos[$_GET['todo']]);
+   saveData($todos);
+}
+
+function saveData($todos)
+{
    file_put_contents('todo.txt', serialize($todos));
    header('Location: index.php');
 }
@@ -59,7 +68,8 @@ print_r($todos);
                   echo $do['todo'];
                }  ?>
          </label>
-         <a href="#">hapus</a>
+         <a href='index.php?hapus=1&todo=<?= $todo; ?>'
+            onclick="return confirm('apakah kamu yakin ingin menghapus ini?')">hapus</a>
       </li>
       <?php
       endforeach;
