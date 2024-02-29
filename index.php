@@ -13,7 +13,16 @@ if (isset($_POST['todo'])) {
       'status' => 0.
    ];
    file_put_contents('todo.txt', serialize($todos));
+   header('Location: index.php');
 }
+
+if (isset($_GET['status'])) {
+   $todos[$_GET['todo']]['status'] = $_GET['status'];
+   file_put_contents('todo.txt', serialize($todos));
+   header('Location: index.php');
+}
+
+print_r($todos);
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +48,17 @@ if (isset($_POST['todo'])) {
       foreach ($todos as $todo => $do) :
       ?>
       <li>
-         <input type="checkbox" name="todo" id="cek">
-         <label for="cek"> <?= $do['todo']; ?></label>
+         <input type="checkbox" name="todo" id=""
+            onclick="window.location.href='index.php?status=<?php echo ($do['status'] == 1) ? '0' : '1'; ?>&todo=<?= $todo; ?>'"
+            <?php if ($do['status'] == 1) echo 'checked'; ?>>
+         <label for="">
+            <?php
+               if ($do['status'] == 1) {
+                  echo '<del>' . $do['todo'] . '</del>';
+               } else {
+                  echo $do['todo'];
+               }  ?>
+         </label>
          <a href="#">hapus</a>
       </li>
       <?php

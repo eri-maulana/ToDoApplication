@@ -1,1 +1,1 @@
-a:3:{i:0;a:2:{s:4:"todo";s:25:"Sarapan Bareng Tuan Putri";s:6:"status";d:0;}i:1;a:2:{s:4:"todo";s:31:"Makan Siang Bareng Power Ranger";s:6:"status";d:0;}i:2;a:2:{s:4:"todo";s:29:"Makan Malam Bareng Seo Dal Mi";s:6:"status";d:0;}}
+a:4:{i:0;a:2:{s:4:"todo";s:25:"Sarapan Bareng Tuan Putri";s:6:"status";s:1:"0";}i:1;a:2:{s:4:"todo";s:31:"Makan Siang Bareng Power Ranger";s:6:"status";s:5:"echo0";}i:2;a:2:{s:4:"todo";s:29:"Makan Malam Bareng Seo Dal Mi";s:6:"status";s:5:"echo0";}i:3;a:2:{s:4:"todo";s:5:"Tidur";s:6:"status";s:1:"1";}}
