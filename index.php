@@ -1,7 +1,9 @@
 <?php
 $todos = [];
-$file = file_get_contents('todo.txt');
-$todos = unserialize($file);
+if (file_exists('todo.txt')) {
+   $file = file_get_contents('todo.txt');
+   $todos = unserialize($file);
+}
 
 if (isset($_POST['todo'])) {
    $data = $_POST['todo'];
@@ -12,7 +14,6 @@ if (isset($_POST['todo'])) {
    ];
    file_put_contents('todo.txt', serialize($todos));
 }
-var_dump($todos);
 ?>
 
 <!DOCTYPE html>
@@ -34,26 +35,18 @@ var_dump($todos);
    </form>
 
    <ul>
+      <?php
+      foreach ($todos as $todo => $do) :
+      ?>
       <li>
          <input type="checkbox" name="todo" id="cek">
-         <label for="cek"> To do 1</label>
+         <label for="cek"> <?= $do['todo']; ?></label>
          <a href="#">hapus</a>
       </li>
-      <li>
-         <input type="checkbox" name="todo" id="cek">
-         <label for="cek"> To do 1</label>
-         <a href="#">hapus</a>
-      </li>
-      <li>
-         <input type="checkbox" name="todo" id="cek">
-         <label for="cek"> To do 1</label>
-         <a href="#">hapus</a>
-      </li>
-      <li>
-         <input type="checkbox" name="todo" id="cek">
-         <label for="cek"> To do 1</label>
-         <a href="#">hapus</a>
-      </li>
+      <?php
+      endforeach;
+      ?>
+
    </ul>
 </body>
 
